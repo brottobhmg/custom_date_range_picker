@@ -45,6 +45,11 @@ class CustomDateRangePicker extends StatefulWidget {
   /// A callback function that is called when the user cancels the selection of the date range.
   final Function() onCancelClick;
 
+  final String labelFrom;
+  final String labelTo;
+  final String labelLeftButton;
+  final String labelRightButton;
+
   const CustomDateRangePicker({
     Key? key,
     this.initialStartDate,
@@ -56,6 +61,10 @@ class CustomDateRangePicker extends StatefulWidget {
     required this.minimumDate,
     required this.maximumDate,
     required this.onCancelClick,
+    required this.labelFrom,
+    required this.labelTo,
+    required this.labelLeftButton,
+    required this.labelRightButton,
   }) : super(key: key);
 
   @override
@@ -131,7 +140,7 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  'From',
+                                  'Acquisto',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
@@ -144,9 +153,9 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
                                 ),
                                 Text(
                                   startDate != null
-                                      ? DateFormat('EEE, dd MMM')
+                                      ? DateFormat('dd/MM/yyyy')
                                           .format(startDate!)
-                                      : '--/-- ',
+                                      : '--/--',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -167,7 +176,7 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  'To',
+                                  'Scadenza',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
@@ -179,9 +188,9 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
                                 ),
                                 Text(
                                   endDate != null
-                                      ? DateFormat('EEE, dd MMM')
+                                      ? DateFormat('dd/MM/yyyy')
                                           .format(endDate!)
-                                      : '--/-- ',
+                                      : '--/--',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
@@ -243,7 +252,7 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
                                   },
                                   child: const Center(
                                     child: Text(
-                                      'Cancel',
+                                      'Cancella',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18,
@@ -283,7 +292,7 @@ class CustomDateRangePickerState extends State<CustomDateRangePicker>
                                   },
                                   child: const Center(
                                     child: Text(
-                                      'Apply',
+                                      'Conferma',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18,
@@ -334,6 +343,10 @@ void showCustomDateRangePicker(
   required Color backgroundColor,
   required Color primaryColor,
   String? fontFamily,
+  required String labelFrom,
+  required String labelTo,
+  required String labelLeftButton,
+  required String labelRightButton,
 }) {
   /// Request focus to take it away from any input field that might be in focus
   FocusScope.of(context).requestFocus(FocusNode());
@@ -351,6 +364,10 @@ void showCustomDateRangePicker(
       initialEndDate: endDate,
       onApplyClick: onApplyClick,
       onCancelClick: onCancelClick,
+      labelFrom:labelFrom,
+      labelTo:labelTo,
+      labelLeftButton:labelLeftButton,
+      labelRightButton:labelRightButton,
     ),
   );
 }
